@@ -1,0 +1,15 @@
+{
+  "short_name": "E-Shop",
+  "name": "E-Shop",
+  "icons": [
+    {
+      "src": "White Modern Minimal E-Commerce Logo (1).png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

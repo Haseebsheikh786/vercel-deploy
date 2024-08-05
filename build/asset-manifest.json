@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.73a0b7c6.css",
+    "main.js": "/static/js/main.1926e029.js",
+    "static/js/787.c1112931.chunk.js": "/static/js/787.c1112931.chunk.js",
+    "static/media/Big_phone_with_cart.jpg": "/static/media/Big_phone_with_cart.b2c9540fede1517f43f8.jpg",
+    "static/media/mobile.png": "/static/media/mobile.f0a47650ed2b4f56d4b2.png",
+    "index.html": "/index.html",
+    "main.73a0b7c6.css.map": "/static/css/main.73a0b7c6.css.map",
+    "main.1926e029.js.map": "/static/js/main.1926e029.js.map",
+    "787.c1112931.chunk.js.map": "/static/js/787.c1112931.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.73a0b7c6.css",
+    "static/js/main.1926e029.js"
+  ]
+}

@@ -1,0 +1,119 @@
+{
+    "builds": [
+      {
+        "src": "index.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "build/**",
+        "use": "@vercel/static"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/",
+        "dest": "index.js"
+      }, 
+      {
+        "src": "/(.*)",
+        "dest": "index.js"
+      },
+      {
+        "src": "/products",
+        "dest": "index.js"
+      }, 
+      {
+        "src": "/products/(.*)",
+        "dest": "index.js"
+      },
+      {
+        "src": "/brands",
+        "dest": "index.js"
+      },
+      {
+        "src": "/brands/(.*)",
+        "dest": "index.js"
+      },
+      {
+        "src": "/categories",
+        "dest": "index.js"
+      },
+      {
+        "src": "/categories/(.*)",
+        "dest": "index.js"
+      },
+      {
+        "src": "/cart",
+        "dest": "index.js"
+      },
+      {
+        "src": "/cart/(.*)",
+        "dest": "index.js"
+      },
+      {
+        "src": "/orders",
+        "dest": "index.js"
+      },
+      {
+        "src": "/orders/(.*)",
+        "dest": "index.js"
+      },
+      {
+        "src": "/api",
+        "dest": "index.js"
+      },
+      {
+        "src": "/api/(.*)",
+        "dest": "index.js"
+      },
+      {
+        "src": "/",
+        "dest": "build/index.html"
+      },
+      {
+        "src": "/product-detail/:id",
+        "dest": "build/index.html"
+      },
+      {
+        "src": "/login",
+        "dest": "build/index.html"
+      },
+      {
+        "src": "/forgot-password",
+        "dest": "build/index.html"
+      },
+      {
+        "src": "/verify-email",
+        "dest": "build/index.html"
+      },
+      {
+        "src": "/download-app",
+        "dest": "build/index.html"
+      },
+      {
+        "src": "/cart",
+        "dest": "build/index.html"
+      },
+      {
+        "src": "/checkout",
+        "dest": "build/index.html"
+      },
+      {
+        "src": "/profile",
+        "dest": "build/index.html"
+      },
+      {
+        "src": "/orders ",
+        "dest": "build/index.html"
+      },
+      {
+        "src": "/order-success/:id",
+        "dest": "build/index.html"
+      },
+      {
+        "src": "/(.+)",
+        "dest": "build/$1"
+      }
+    ]
+  }
+  
