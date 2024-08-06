@@ -48,7 +48,7 @@ const server = http.createServer(app);
 // Create a new instance of Socket.io by passing the HTTP server
 const io = new Server(server, {
   cors: {
-    origin: "*", // Allow all origins (use caution in production)
+    origin: "https://e-shop-steel-chi.vercel.app", // Allow all origins (use caution in production)
     methods: ["GET", "POST"],
     credentials: true,
   },
