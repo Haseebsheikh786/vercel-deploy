@@ -11,7 +11,7 @@ const { Server } = require("socket.io"); // Import Socket.io
 
 const app = express();
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 
 app.use(cookieParser());
 
@@ -48,7 +48,7 @@ const server = http.createServer(app);
 // Create a new instance of Socket.io by passing the HTTP server
 const io = new Server(server, {
   cors: {
-    origin: "https://e-shop-steel-chi.vercel.app", // Allow all origins (use caution in production)
+    origin: "*", // Allow all origins (use caution in production)
     methods: ["GET", "POST"],
     credentials: true,
   },
