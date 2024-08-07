@@ -5,8 +5,6 @@ const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const { User } = require("../models/UserModel");
 
-let NODE_ENV = "production";
-
 const Register = asyncHandler(async (req, res) => {
   const { email, password, userName } = req.body;
 
@@ -99,16 +97,14 @@ const VerifyEmail = asyncHandler(async (req, res) => {
   } catch (error) {
     return next(error);
   }
-  const cookieOptions = {
+  res.cookie("token", token, {
     maxAge: 1000 * 60 * 60 * 24,
     httpOnly: true,
-    sameSite: "Strict",
-    secure: NODE_ENV === "production",
-    path: "/",
-  };
-
-  res.cookie("token", token, cookieOptions);
-  res.cookie("refreshToken", refreshToken, cookieOptions);
+  });
+  res.cookie("refreshToken", refreshToken, {
+    maxAge: 1000 * 60 * 60 * 24,
+    httpOnly: true,
+  });
   res.status(200).json({
     message: "User verified successfully",
     _id: userAvailable._id,
@@ -208,16 +204,14 @@ const login = asyncHandler(async (req, res) => {
     return next(error);
   }
 
-  const cookieOptions = {
+  res.cookie("token", token, {
     maxAge: 1000 * 60 * 60 * 24,
     httpOnly: true,
-    sameSite: "Strict",
-    secure: NODE_ENV === "production",
-    path: "/",
-  };
-
-  res.cookie("token", token, cookieOptions);
-  res.cookie("refreshToken", refreshToken, cookieOptions);
+  });
+  res.cookie("refreshToken", refreshToken, {
+    maxAge: 1000 * 60 * 60 * 24,
+    httpOnly: true,
+  });
   res.status(200).json({
     email,
     _id: user._id,
@@ -228,7 +222,7 @@ const login = asyncHandler(async (req, res) => {
   });
 });
 
-const Logout = asyncHandler(async (req, res, next) => {
+const Logout = asyncHandler(async (req, res) => {
   const { refreshToken } = req.cookies;
 
   try {
@@ -237,15 +231,8 @@ const Logout = asyncHandler(async (req, res, next) => {
     return next(error);
   }
 
-  const cookieOptions = {
-    httpOnly: true,
-    sameSite: "Strict",
-    secure: NODE_ENV === "production",
-    path: "/",
-  };
-
-  res.clearCookie("token", cookieOptions);
-  res.clearCookie("refreshToken", cookieOptions);
+  res.clearCookie("token");
+  res.clearCookie("refreshToken");
 
   res.status(200).json({ user: null });
 });
@@ -306,16 +293,16 @@ const refresh = asyncHandler(async (req, res) => {
     );
 
     await RefreshToken.updateOne({ _id: id }, { token: refreshToken });
-    const cookieOptions = {
+
+    res.cookie("token", token, {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
-      sameSite: "Strict",
-      secure: NODE_ENV === "production",
-      path: "/",
-    };
+    });
 
-    res.cookie("token", token, cookieOptions);
-    res.cookie("refreshToken", refreshToken, cookieOptions);
+    res.cookie("refreshToken", refreshToken, {
+      maxAge: 1000 * 60 * 60 * 24,
+      httpOnly: true,
+    });
   } catch (e) {
     return next(e);
   }
