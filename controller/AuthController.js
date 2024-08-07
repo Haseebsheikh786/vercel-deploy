@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const { User } = require("../models/UserModel");
 
+let NODE_ENV = "production";
+
 const Register = asyncHandler(async (req, res) => {
   const { email, password, userName } = req.body;
 
@@ -101,7 +103,7 @@ const VerifyEmail = asyncHandler(async (req, res) => {
     maxAge: 1000 * 60 * 60 * 24,
     httpOnly: true,
     sameSite: "Strict",
-    secure: process.env.NODE_ENV === "production",
+    secure: NODE_ENV === "production",
     path: "/",
   };
 
@@ -210,7 +212,7 @@ const login = asyncHandler(async (req, res) => {
     maxAge: 1000 * 60 * 60 * 24,
     httpOnly: true,
     sameSite: "Strict",
-    secure: process.env.NODE_ENV === "production",
+    secure: NODE_ENV === "production",
     path: "/",
   };
 
@@ -238,7 +240,7 @@ const Logout = asyncHandler(async (req, res, next) => {
   const cookieOptions = {
     httpOnly: true,
     sameSite: "Strict",
-    secure: process.env.NODE_ENV === "production",
+    secure: NODE_ENV === "production",
     path: "/",
   };
 
@@ -308,11 +310,11 @@ const refresh = asyncHandler(async (req, res) => {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
       sameSite: "Strict",
-      secure: process.env.NODE_ENV === "production",
+      secure: NODE_ENV === "production",
       path: "/",
     };
 
-    res.cookie("token", token, cookieOptions); 
+    res.cookie("token", token, cookieOptions);
     res.cookie("refreshToken", refreshToken, cookieOptions);
   } catch (e) {
     return next(e);
