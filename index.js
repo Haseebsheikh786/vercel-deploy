@@ -41,41 +41,41 @@ app.use("/api", require("./routes/ChatRoute"));
 
 dbConnect();
 
-// Create HTTP server and pass in the Express app
-const server = http.createServer(app);
+// // Create HTTP server and pass in the Express app
+// const server = http.createServer(app);
 
-// Create a new instance of Socket.io by passing the HTTP server
-const io = new Server(server, {
-  cors: {
-    origin: "https://e-shop-steel-chi.vercel.app/", // Allow all origins (use caution in production)
-    methods: ["GET", "POST"],
-    credentials: true,
-  },
-});
+// // Create a new instance of Socket.io by passing the HTTP server
+// const io = new Server(server, {
+//   cors: {
+//     origin: "https://e-shop-steel-chi.vercel.app/", // Allow all origins (use caution in production)
+//     methods: ["GET", "POST"],
+//     credentials: true,
+//   },
+// });
 
-// Socket.io event handling
-io.on("connection", (socket) => {
-  console.log(`User connected: ${socket.id}`);
+// // Socket.io event handling
+// io.on("connection", (socket) => {
+//   console.log(`User connected: ${socket.id}`);
 
-  // Handling a new message event from the client
-  socket.on("new_message", (data) => {
-    console.log("Message received:", data);
-    // Emit the message to all connected clients
-    io.emit("receive_message", {
-      message_id: null,
-      content: data.content,
-      sender_id: data.sender,
-      sender_name: data.sender_name,
-      sender_role: data.sender_role,
-      created_at: new Date().toISOString(),
-    });
-  });
+//   // Handling a new message event from the client
+//   socket.on("new_message", (data) => {
+//     console.log("Message received:", data);
+//     // Emit the message to all connected clients
+//     io.emit("receive_message", {
+//       message_id: null,
+//       content: data.content,
+//       sender_id: data.sender,
+//       sender_name: data.sender_name,
+//       sender_role: data.sender_role,
+//       created_at: new Date().toISOString(),
+//     });
+//   });
 
-  // Handling disconnection
-  socket.on("disconnect", () => {
-    console.log(`User disconnected: ${socket.id}`);
-  });
-});
+//   // Handling disconnection
+//   socket.on("disconnect", () => {
+//     console.log(`User disconnected: ${socket.id}`);
+//   });
+// });
 
 // Start the server
 server.listen(port, () => {
