@@ -17,12 +17,13 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://e-shop-steel-chi.vercel.app", // Set your frontend URL here
+    origin: function (origin, callback) {
+      return callback(null, true);
+    },
     optionsSuccessStatus: 200,
     credentials: true,
   })
 );
-;
 
 app.use(express.json());
 
@@ -47,7 +48,7 @@ const server = http.createServer(app);
 // Create a new instance of Socket.io by passing the HTTP server
 const io = new Server(server, {
   cors: {
-    origin: "https://e-shop-steel-chi.vercel.app/", // Allow all origins (use caution in production)
+    origin: "https://e-shop-steel-chi.vercel.app", // Allow all origins (use caution in production)
     methods: ["GET", "POST"],
     credentials: true,
   },
